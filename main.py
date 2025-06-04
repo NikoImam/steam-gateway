@@ -1,1 +1,1 @@
-from Methods.UserInfoGetter import get_steam_user_infouser = get_steam_user_info(76561198949189790, '881DCD9F048B4BE70833E5003C9793E0')print(user)
+from Methods.UserInfoGetter import get_steam_user_infofrom decouple import configKEY = config('STEAM_API_KEY')STEAM_ID = config('STEAM_ID')print(KEY)print(STEAM_ID)user = get_steam_user_info(STEAM_ID, KEY)print(user)

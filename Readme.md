@@ -6,4 +6,5 @@ pip install -r requirements.txt
 
 ```shell
 echo "STEAM_API_KEY=YOUR_KEY" >> .env
+echo "STEAM_ID=USER_ID" >> .env
 ```

@@ -24,3 +24,6 @@ class SteamUser:
         self.profile_url = profile_url
         self.game_count = game_count
         self.status = status
+
+    def __str__(self):
+        return f"{self.username} ({self.steam_id}) - {self.game_count} игр"

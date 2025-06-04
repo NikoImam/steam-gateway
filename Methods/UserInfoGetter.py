@@ -25,7 +25,7 @@ def get_steam_user_info(steam_id : int, api_key : str) :
         user_response.raise_for_status()
         user_data = user_response.json()
 
-        time.sleep(1)
+        time.sleep(2)
 
         # Запрос информации о играх
         games_response = session.get(games_url)
