@@ -1,8 +1,5 @@
 import time
 import requests
-import json
-
-from requests import session
 
 from Models.SteamUser import SteamUser
 import logging
@@ -18,7 +15,6 @@ def get_steam_user_info(steam_id : int, api_key : str) :
     })
 
     user_url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={api_key}&steamids={steam_id}"
-    time.sleep(2)
 
     # Получаем информацию о играх пользователя
     games_url = f"https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key={api_key}&steamid={steam_id}"
@@ -28,6 +24,8 @@ def get_steam_user_info(steam_id : int, api_key : str) :
         user_response = session.get(user_url)
         user_response.raise_for_status()
         user_data = user_response.json()
+
+        time.sleep(1)
 
         # Запрос информации о играх
         games_response = session.get(games_url)
@@ -46,5 +44,5 @@ def get_steam_user_info(steam_id : int, api_key : str) :
                           'succes')
 
     except Exception as e:
-        logger.error(f"Ошибка при получении данных Steam для ID {steam_id}: {e}", exc_info=True)
+        logger.error(f"Ошибка при получении данных Steam для ID {steam_id}: {e}\n", exc_info=True)
         raise
