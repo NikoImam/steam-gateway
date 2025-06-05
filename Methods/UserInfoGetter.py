@@ -36,12 +36,16 @@ def get_steam_user_info(steam_id : int, api_key : str) :
         player = user_data['response']['players'][0]
         game_count = games_data['response']['game_count'] if 'game_count' in games_data['response'] else 0
 
+        games = []
+
+        for game in games_data['response']['games']:
+            games.append(game['appid'])
+
         return SteamUser (steam_id,
                           player.get('personaname', 'Unknown'),
                           player.get('avatarfull', ''),
                           player.get('profileurl', ''),
-                          game_count,
-                          'succes')
+                          games)
 
     except Exception as e:
         logger.error(f"Ошибка при получении данных Steam для ID {steam_id}: {e}\n", exc_info=True)
